@@ -23,7 +23,7 @@ import sys
 import sqlite3
 #
 
-db = 'Database' # PodcastAddict database file (relative to script)
+db = 'podcastAddict.db' # PodcastAddict database file (relative to script)
 export_db = 'Export' # AntennaPod file
 
 # Key-constants

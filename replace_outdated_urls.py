@@ -21,7 +21,7 @@ import sqlite3
 import json
 import urllib.request
 #
-CDX_BASE="http://web.arthive.org/cdx/search/cdx?output=json&url={}"
+CDX_BASE="http://web.archive.org/cdx/search/cdx?output=json&url={}"
 TIMESTAMPED_ADDRESS_BASE="https://web.archive.org/web/{}if_/{}"
 
 def fetch_old(url):
@@ -35,7 +35,8 @@ def fetch_old(url):
     try:
         request_url = urllib.request.urlopen(web_archive_url)
     except urllib.error.HTTPError as e:
-        print("HTTP exception: " + e)
+        print("HTTP exception on url %s: %s " % (url, str(e)))
+        return None
     if request_url is None:
         return None
     # Handle unfollowed redirection
@@ -70,6 +71,6 @@ def main(title):
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python replace_outdated.py PODCAST_NAME ")
-        print("Must be run in the same directory as file AntennaPod.db")
+        print("Must be run in the same directory as file AntennaPodBackup.db")
     else:
         main(sys.argv[1])
